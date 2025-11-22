@@ -1,11 +1,13 @@
 package algorithms
 
+import "sort"
+
 func removeDuplicates(nums []int) int {
 	return 0
 }
 
 func maxProfit(prices []int) int {
-	var profit int = 0
+	profit := 0
 	for i := 0; i < len(prices)-1; i++ {
 		var diff = prices[i+1] - prices[i]
 		if diff > 0 {
@@ -16,7 +18,7 @@ func maxProfit(prices []int) int {
 }
 
 func rotate(nums []int, k int) {
-	var n = len(nums)
+	n := len(nums)
 	if n < 2 {
 		return
 	}
@@ -25,7 +27,7 @@ func rotate(nums []int, k int) {
 	}
 	k = k % n
 
-	var arr = make([]int, k)
+	arr := make([]int, k)
 
 	for i := range k {
 		arr[i] = nums[n-k+i]
@@ -56,7 +58,22 @@ func singleNumber(nums []int) int {
 }
 
 func intersect(nums1 []int, nums2 []int) []int {
-	return []int{}
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+	var result []int
+	k := 0
+	for i := 0; i < len(nums1); i++ {
+		item1 := nums1[i]
+		for j := k; j < len(nums2); j++ {
+			item2 := nums2[j]
+			if item1 == item2 {
+				result = append(result, item1)
+				k = j + 1
+				break
+			}
+		}
+	}
+	return result
 }
 
 func plusOne(digits []int) []int {
