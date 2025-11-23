@@ -1,6 +1,8 @@
 package algorithms
 
-import "sort"
+import (
+	"sort"
+)
 
 func removeDuplicates(nums []int) int {
 	return 0
@@ -96,6 +98,25 @@ func plusOne(digits []int) []int {
 
 func moveZeroes(nums []int) {
 
+	if len(nums) <= 1 {
+		return
+	}
+	zeroCount := 0
+	step := 1
+
+	for i := 1; i < len(nums); i++ {
+		lastValue := nums[i-step]
+		currentValue := nums[i]
+		if lastValue == 0 {
+			zeroCount++
+			if currentValue != 0 {
+				nums[i-step] = currentValue
+				nums[i] = 0
+			} else {
+				step++
+			}
+		}
+	}
 }
 
 func twoSum(nums []int, target int) []int {
@@ -110,8 +131,47 @@ func twoSum(nums []int, target int) []int {
 }
 
 func isValidSudoku(board [][]byte) bool {
+	n := len(board)
+	for i := range n {
+		column := make(map[byte]struct{})
+		row := make(map[byte]struct{})
+		square := make(map[byte]struct{})
+		q0 := 3 * (i % 3)
+		r0 := 3 * (i / 3)
 
-	return false
+		for j := range n {
+			rowCell := board[i][j]
+			if rowCell != '.' {
+				_, exists := row[rowCell]
+				if exists {
+					return false
+				}
+				row[rowCell] = struct{}{}
+			}
+
+			colCell := board[j][i]
+			if colCell != '.' {
+				_, exists := column[colCell]
+				if exists {
+					return false
+				}
+				column[colCell] = struct{}{}
+			}
+
+			iq := q0 + j/3
+			jq := r0 + j%3
+
+			squareCell := board[iq][jq]
+			if squareCell != '.' {
+				_, exists := square[squareCell]
+				if exists {
+					return false
+				}
+				square[squareCell] = struct{}{}
+			}
+		}
+	}
+	return true
 }
 
 func rotateImage(matrix [][]int) {
