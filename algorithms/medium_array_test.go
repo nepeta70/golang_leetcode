@@ -46,7 +46,7 @@ func TestGroupAnagrams(t *testing.T) {
 	}
 	result := groupAnagrams(strings)
 
-	if !reflect.DeepEqual(result, expected) {
+	if !matricesEqualIgnoreOrder(result, expected) {
 		t.Errorf("Expected %v, got %v", expected, result)
 	}
 }
