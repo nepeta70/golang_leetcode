@@ -1,15 +1,5 @@
 package algorithms
 
-import "sort"
-
-func sortString(s string) string {
-	r := []rune(s) // convert to rune slice (supports Unicode)
-	sort.Slice(r, func(i, j int) bool {
-		return r[i] < r[j]
-	})
-	return string(r)
-}
-
 func threeSum(nums []int) [][]int {
 	if len(nums) < 3 {
 		return [][]int{}

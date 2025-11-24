@@ -1,6 +1,17 @@
 package algorithms
 
-import "reflect"
+import (
+	"reflect"
+	"sort"
+)
+
+func sortString(s string) string {
+	r := []rune(s) // convert to rune slice (supports Unicode)
+	sort.Slice(r, func(i, j int) bool {
+		return r[i] < r[j]
+	})
+	return string(r)
+}
 
 // Flatten a 2D slice of strings
 func flatten(matrix [][]string) []string {
