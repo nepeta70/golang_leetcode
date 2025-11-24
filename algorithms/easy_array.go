@@ -5,7 +5,25 @@ import (
 )
 
 func removeDuplicates(nums []int) int {
-	return 0
+	n := len(nums)
+	if n <= 1 {
+		return 0
+	}
+	sort.Ints(nums)
+	count := 0
+	index := 0
+	lastVal := nums[index]
+	for i := 1; i < n; i++ {
+		if nums[i] != lastVal {
+			index++
+			lastVal = nums[i]
+		} else {
+			count++
+			nums[i] = lastVal
+		}
+	}
+	nums[count-1] = lastVal
+	return count
 }
 
 func maxProfit(prices []int) int {
@@ -45,17 +63,37 @@ func rotate(nums []int, k int) {
 }
 
 func containsDuplicate(nums []int) bool {
-	for i := 0; i < len(nums)-1; i++ {
-		for j := i + 1; j < len(nums); j++ {
-			if nums[i] == nums[j] {
-				return true
-			}
+	set := make(map[int]struct{})
+
+	for i := range len(nums) {
+		x := nums[i]
+		_, exists := set[x]
+		if exists {
+			return true
 		}
+		set[x] = struct{}{}
 	}
 	return false
 }
 
 func singleNumber(nums []int) int {
+	n := len(nums)
+	if n == 1 {
+		return nums[0]
+	}
+	sort.Ints(nums)
+
+	if nums[0] != nums[1] {
+		return nums[0]
+	}
+	if nums[n-1] != nums[n-2] {
+		return nums[n-1]
+	}
+	for i := 1; i < len(nums)-1; i++ {
+		if nums[i-1] != nums[i] && nums[i] != nums[i+1] {
+			return nums[i]
+		}
+	}
 	return 0
 }
 

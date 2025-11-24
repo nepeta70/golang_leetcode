@@ -1,6 +1,7 @@
 package algorithms
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -10,8 +11,36 @@ func TestRemoveDuplicates(t *testing.T) {
 	input := []int{1, 1, 2}
 	result := removeDuplicates(input)
 
-	if result != 2 {
-		t.Errorf("Expected 2, got %d", result)
+	expected := 2
+	output := []int{1, 2}
+	fmt.Printf("result: %d\n", result)
+	fmt.Printf("input: %v\n", input)
+	if result != expected {
+		t.Errorf("Expected %d, got %d", expected, result)
+		for i := 0; i < result; i++ {
+			if input[i] != output[i] {
+				t.Errorf("Output different, expected %v, real %v", output, input)
+			}
+		}
+	}
+}
+
+func TestRemoveDuplicates2(t *testing.T) {
+
+	input := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	result := removeDuplicates(input)
+
+	expected := 5
+	output := []int{0, 1, 2, 3, 4}
+	fmt.Printf("result: %d\n", result)
+	fmt.Printf("input: %v\n", input)
+	if result != expected {
+		t.Errorf("Expected %d, got %d", expected, result)
+		for i := 0; i < result; i++ {
+			if input[i] != output[i] {
+				t.Errorf("Output different, expected %v, real %v", output, input)
+			}
+		}
 	}
 }
 
