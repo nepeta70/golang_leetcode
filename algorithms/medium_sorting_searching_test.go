@@ -39,3 +39,21 @@ func TestMerge(t *testing.T) {
 		t.Errorf("Expected %v, got %v", expected, result)
 	}
 }
+
+func TestMerge2(t *testing.T) {
+
+	intervals := [][]int{
+		{1, 4},
+		{2, 3},
+	}
+
+	expected := [][]int{
+		{1, 4},
+	}
+
+	result := merge(intervals)
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Expected %v, got %v", expected, result)
+	}
+}

@@ -27,5 +27,32 @@ func topKFrequent(nums []int, k int) []int {
 }
 
 func merge(intervals [][]int) [][]int {
-	return [][]int{}
+
+	n := len(intervals)
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+
+	lastInterval := intervals[0]
+	var result [][]int
+	for i := 1; i <= n; i++ {
+		if i == n {
+			result = append(result, lastInterval)
+		} else {
+			interval := intervals[i]
+			start0, end0 := lastInterval[0], lastInterval[1]
+			start1, end1 := interval[0], interval[1]
+			if start1 <= end0 {
+				latestEnd := end0
+				if end1 > end0 {
+					latestEnd = end1
+				}
+				lastInterval = []int{start0, latestEnd}
+			} else {
+				result = append(result, lastInterval)
+				lastInterval = []int{start1, end1}
+			}
+		}
+	}
+	return result
 }
