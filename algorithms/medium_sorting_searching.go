@@ -25,3 +25,7 @@ func topKFrequent(nums []int, k int) []int {
 
 	return keys[:k]
 }
+
+func merge(intervals [][]int) [][]int {
+	return [][]int{}
+}

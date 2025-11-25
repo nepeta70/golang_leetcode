@@ -1,5 +1,7 @@
 package algorithms
 
+import "strings"
+
 func threeSum(nums []int) [][]int {
 	if len(nums) < 3 {
 		return [][]int{}
@@ -40,4 +42,31 @@ func groupAnagrams(strs []string) [][]string {
 	}
 
 	return result
+}
+
+func lengthOfLongestSubstring(s string) int {
+
+	n := len(s)
+	if n < 2 {
+		return n
+	}
+
+	longestLength := 0
+	currentString := string(s[0])
+
+	for i := 1; i < n; i++ {
+		currentChar := string(s[i])
+		containsChar := strings.Contains(currentString, currentChar)
+		if !containsChar {
+			currentString += currentChar
+		} else {
+			i := strings.LastIndex(currentString, currentChar)
+			currentString = currentString[i+1:] + currentChar
+		}
+		currentLength := len(currentString)
+		if currentLength > longestLength {
+			longestLength = currentLength
+		}
+	}
+	return longestLength
 }

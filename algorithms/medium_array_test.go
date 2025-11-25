@@ -50,3 +50,23 @@ func TestGroupAnagrams(t *testing.T) {
 		t.Errorf("Expected %v, got %v", expected, result)
 	}
 }
+
+func TestLengthOfLongestSubstring(t *testing.T) {
+	input := "abcabcbb"
+	expected := 3
+	result := lengthOfLongestSubstring(input)
+
+	if result != expected {
+		t.Errorf("Expected %v, got %v", expected, result)
+	}
+}
+
+func TestLengthOfLongestSubstring2(t *testing.T) {
+	input := "pwwkew"
+	expected := 3
+	result := lengthOfLongestSubstring(input)
+
+	if result != expected {
+		t.Errorf("Expected %v, got %v", expected, result)
+	}
+}
