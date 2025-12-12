@@ -9,17 +9,18 @@ import (
 func TestRemoveDuplicates(t *testing.T) {
 
 	input := []int{1, 1, 2}
+	fmt.Printf("Input: %v\n", input)
 	result := removeDuplicates(input)
 
 	expected := 2
 	output := []int{1, 2}
 	fmt.Printf("result: %d\n", result)
-	fmt.Printf("input: %v\n", input)
+	fmt.Printf("input after: %v\n", input)
 	if result != expected {
 		t.Errorf("Expected %d, got %d", expected, result)
-		for i := 0; i < result; i++ {
+		for i := range output {
 			if input[i] != output[i] {
-				t.Errorf("Output different, expected %v, real %v", output, input)
+				t.Errorf("Output different, expected %v, real %v", output[i], input[i])
 			}
 		}
 	}

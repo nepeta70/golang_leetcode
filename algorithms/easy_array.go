@@ -7,22 +7,19 @@ import (
 func removeDuplicates(nums []int) int {
 	n := len(nums)
 	if n <= 1 {
-		return 0
+		return 1
 	}
-	sort.Ints(nums)
-	count := 0
-	index := 0
-	lastVal := nums[index]
+
+	count := 1
+	lastVal := nums[0]
 	for i := 1; i < n; i++ {
 		if nums[i] != lastVal {
-			index++
-			lastVal = nums[i]
-		} else {
+			nums[count] = nums[i]
 			count++
-			nums[i] = lastVal
+			lastVal = nums[i]
 		}
 	}
-	nums[count-1] = lastVal
+
 	return count
 }
 
