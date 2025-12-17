@@ -1,0 +1,41 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go build artifacts
+bin/
+build/
+dist/
+
+# Coverage files
+*.cover
+*.coverage
+coverage.out
+
+# Logs
+*.log
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Dependency directories for old GOPATH setups
+pkg/
+vendor/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+.DS_Store
