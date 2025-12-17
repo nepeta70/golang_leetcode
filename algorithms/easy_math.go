@@ -6,15 +6,15 @@ func fizzBuzz(n int) []string {
 
 	result := make([]string, n)
 	for i := range n {
-		result[i] = ""
 		m := i + 1
-		if m%3 == 0 {
+		switch {
+		case m%3 == 0 && m%5 == 0:
+			result[i] = "FizzBuzz"
+		case m%3 == 0:
 			result[i] = "Fizz"
-		}
-		if m%5 == 0 {
-			result[i] += "Buzz"
-		}
-		if len(result[i]) == 0 {
+		case m%5 == 0:
+			result[i] = "Buzz"
+		default:
 			result[i] = strconv.Itoa(m)
 		}
 	}

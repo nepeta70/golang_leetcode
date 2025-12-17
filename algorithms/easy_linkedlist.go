@@ -34,31 +34,39 @@ func deleteNode(node *ListNode) {
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 
-	count := 0
-	current := head
+	if n == 1 && head.Next == nil {
+		return nil
+	}
 
+	current := head
+	s := []*ListNode{current}
 	for {
 		if current == nil {
 			break
 		}
 		current = current.Next
-		count++
-	}
-	toDelete := count - n
-	if toDelete < 0 {
-		return head
-	}
-	if count == 1 && toDelete == 1 {
-		head = nil
-	}
-	current = head.Next
-	for i := range toDelete {
-		if i == toDelete-1 {
-			current.Val = current.Next.Val
-			current.Next = current.Next.Next
+		if current == nil {
 			break
 		}
-		current = current.Next
+		s = append(s, current)
 	}
+
+	l := len(s)
+	indexToDelete := l - n
+	if indexToDelete < 0 {
+		return head
+	}
+	if indexToDelete == 0 {
+		return head.Next
+	}
+	toDelete := s[indexToDelete]
+	if indexToDelete == l-1 {
+		s[l-2].Next = nil
+		return head
+	}
+
+	toDelete.Val = toDelete.Next.Val
+	toDelete.Next = toDelete.Next.Next
+
 	return head
 }

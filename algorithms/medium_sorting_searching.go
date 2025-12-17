@@ -8,7 +8,7 @@ func topKFrequent(nums []int, k int) []int {
 	dict := make(map[int]int)
 	var keys []int
 
-	for i := 0; i < n; i++ {
+	for i := range n {
 		item := nums[i]
 		_, exists := dict[item]
 		if !exists {
@@ -43,10 +43,7 @@ func merge(intervals [][]int) [][]int {
 			start0, end0 := lastInterval[0], lastInterval[1]
 			start1, end1 := interval[0], interval[1]
 			if start1 <= end0 {
-				latestEnd := end0
-				if end1 > end0 {
-					latestEnd = end1
-				}
+				latestEnd := max(end1, end0)
 				lastInterval = []int{start0, latestEnd}
 			} else {
 				result = append(result, lastInterval)

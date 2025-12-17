@@ -25,7 +25,7 @@ func removeDuplicates(nums []int) int {
 
 func maxProfit(prices []int) int {
 	profit := 0
-	for i := 0; i < len(prices)-1; i++ {
+	for i := range len(prices) - 1 {
 		var diff = prices[i+1] - prices[i]
 		if diff > 0 {
 			profit = profit + diff
@@ -54,7 +54,7 @@ func rotate(nums []int, k int) {
 		nums[i] = nums[i-k]
 	}
 
-	for i := 0; i < k; i++ {
+	for i := range k {
 		nums[i] = arr[i]
 	}
 }
@@ -86,7 +86,7 @@ func singleNumber(nums []int) int {
 	if nums[n-1] != nums[n-2] {
 		return nums[n-1]
 	}
-	for i := 1; i < len(nums)-1; i++ {
+	for i := range len(nums) - 1 {
 		if nums[i-1] != nums[i] && nums[i] != nums[i+1] {
 			return nums[i]
 		}
@@ -99,8 +99,8 @@ func intersect(nums1 []int, nums2 []int) []int {
 	sort.Ints(nums2)
 	var result []int
 	k := 0
-	for i := 0; i < len(nums1); i++ {
-		item1 := nums1[i]
+	for _, num1 := range nums1 {
+		item1 := num1
 		for j := k; j < len(nums2); j++ {
 			item2 := nums2[j]
 			if item1 == item2 {
@@ -155,8 +155,9 @@ func moveZeroes(nums []int) {
 }
 
 func twoSum(nums []int, target int) []int {
-	for i := 0; i < len(nums)-1; i++ {
-		for j := i + 1; j < len(nums); j++ {
+	n := len(nums)
+	for i := range n - 1 {
+		for j := i + 1; j < n; j++ {
 			if nums[i]+nums[j] == target {
 				return []int{i, j}
 			}
@@ -210,48 +211,45 @@ func isValidSudoku(board [][]byte) bool {
 }
 
 func rotateImage(matrix [][]int) {
-	d := len(matrix)
-	y0 := 0
-	d0 := d - 1
+	d0 := len(matrix) - 1
 	d1 := d0
-	d2 := d1
+	d2 := d0
 
-	for i := y0; i < d1; i++ {
-		for j := 0; j < d2; j++ {
-			row0 := i
+	// It'll rotate layer by layer from outside to inside
+	for i := range d1 {
+		for j := range d2 {
 			col0 := i + j
-			previousCell := matrix[row0][col0]
+			currentCell := matrix[i][col0]
 
 			// new column index = initial row index
 			// new row index = d0 - initial column index
-			col1 := d0 - row0
-			nextCell := matrix[col0][col1]
+			col1 := d0 - i
+			targetCell := matrix[col0][col1]
 
 			// Top to right
-			matrix[col0][col1] = previousCell
+			matrix[col0][col1] = currentCell
 
 			// new row index = previous column index
 			// new column index = d0 - previous row index
 			col2 := d0 - col0
-			previousCell = matrix[col1][col2]
+			currentCell = matrix[col1][col2]
 
 			// Right to bottom
-			matrix[col1][col2] = nextCell
+			matrix[col1][col2] = targetCell
 
 			// new column index = previous row index
 			// new row index = d0 - previous column index
 			col3 := d0 - col1
-			nextCell = matrix[col2][col3]
+			targetCell = matrix[col2][col3]
 
 			// Bottom to left
-			matrix[col2][col3] = previousCell
+			matrix[col2][col3] = currentCell
 
 			// new row index = previous column index = initial row index
 			// new column index = d0 - previous row index = initial column index
 			// Left to top
-			matrix[row0][col0] = nextCell
+			matrix[i][col0] = targetCell
 		}
-		y0++
 		d1--
 		d2 -= 2
 	}

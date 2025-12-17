@@ -1,13 +1,62 @@
 package algorithms
 
-import "strings"
+import (
+	"sort"
+	"strings"
+)
 
 func threeSum(nums []int) [][]int {
-	if len(nums) < 3 {
-		return [][]int{}
+	n := len(nums)
+	result := make([][]int, 0)
+	if n < 3 {
+		return result
+	}
+	sort.Ints(nums)
+	if n == 3 {
+		if nums[0]+nums[1]+nums[2] == 0 {
+			result = append(result, []int{nums[0], nums[1], nums[2]})
+		}
+		return result
 	}
 
-	return [][]int{}
+	// count := 1
+	// lastVal := nums[0]
+	// for i := 1; i < n; i++ {
+	// 	if nums[i] != lastVal {
+	// 		nums[count] = nums[i]
+	// 		count++
+	// 		lastVal = nums[i]
+	// 	}
+	// }
+
+	// for i := range nums[:count-2] {
+	// 	for j := range nums[i+1 : count-1] {
+	// 		for k := range nums[j+1 : count] {
+	// 			if i+j+k == 0 {
+	// 				result = append(result, []int{i, j, k})
+	// 			}
+	// 		}
+	// 	}
+	// }
+	lasti := nums[0]
+	//lastj := nums[1]
+	//lastk := nums[2]
+	for i := 1; i < n-2; i++ {
+		if nums[i] == lasti {
+			continue
+		}
+		lasti = nums[i]
+		for j := i + 1; j < n-1; j++ {
+			for k := j + 1; k < n; k++ {
+				if i != j && j != k && k != i {
+					if nums[i]+nums[j]+nums[k] == 0 {
+						result = append(result, []int{nums[i], nums[j], nums[k]})
+					}
+				}
+			}
+		}
+	}
+	return result
 }
 
 func setZeroes(matrix [][]int) {
@@ -20,13 +69,13 @@ func groupAnagrams(strs []string) [][]string {
 
 	var result [][]string
 
-	if len(strs) < 2 {
+	if n < 2 {
 		result = append(result, []string{strs[0]})
 		return result
 	}
 	dict := make(map[string][]string)
 
-	for i := 0; i < n; i++ {
+	for i := range n {
 		item := strs[i]
 		sorted := sortString(item)
 		_, exists := dict[sorted]
