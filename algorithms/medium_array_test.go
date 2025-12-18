@@ -55,23 +55,46 @@ func TestGroupAnagrams(t *testing.T) {
 }
 
 func TestLengthOfLongestSubstring(t *testing.T) {
-	t.Parallel()
-	input := "abcabcbb"
-	expected := 3
-	result := lengthOfLongestSubstring(input)
-
-	if result != expected {
-		t.Errorf("Expected %v, got %v", expected, result)
+	// 1. Define the test table
+	tests := []struct {
+		name     string
+		input    string
+		expected int
+	}{
+		{
+			name:     "standard repeating pattern",
+			input:    "abcabcbb",
+			expected: 3, // "abc"
+		},
+		{
+			name:     "repeating middle characters",
+			input:    "pwwkew",
+			expected: 3, // "wke"
+		},
+		{
+			name:     "all identical characters",
+			input:    "bbbbb",
+			expected: 1, // "b"
+		},
+		{
+			name:     "empty string",
+			input:    "",
+			expected: 0,
+		},
 	}
-}
 
-func TestLengthOfLongestSubstring2(t *testing.T) {
-	t.Parallel()
-	input := "pwwkew"
-	expected := 3
-	result := lengthOfLongestSubstring(input)
+	// 2. Iterate over the table
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel() // Maintain parallel execution from your original code
 
-	if result != expected {
-		t.Errorf("Expected %v, got %v", expected, result)
+			// 3. Execute the function under test
+			result := lengthOfLongestSubstring(tc.input)
+
+			// 4. Assert the result
+			if result != tc.expected {
+				t.Errorf("For input %q: expected %d, got %d", tc.input, tc.expected, result)
+			}
+		})
 	}
 }

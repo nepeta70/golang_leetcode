@@ -1,48 +1,50 @@
 package algorithms
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 )
 
 func TestRemoveDuplicates(t *testing.T) {
-
-	t.Parallel()
-	input := []int{1, 1, 2}
-	fmt.Printf("Input: %v\n", input)
-	result := removeDuplicates(input)
-
-	expected := 2
-	output := []int{1, 2}
-	fmt.Printf("result: %d\n", result)
-	fmt.Printf("input after: %v\n", input)
-	if result != expected {
-		t.Errorf("Expected %d, got %d", expected, result)
-		for i := range output {
-			if input[i] != output[i] {
-				t.Errorf("Output different, expected %v, real %v", output[i], input[i])
-			}
-		}
+	// Define the structure for our test cases
+	tests := []struct {
+		name           string // Description of the test case
+		input          []int  // The slice to be modified
+		expectedLength int    // The expected return value (k)
+		expectedSlice  []int  // The expected values in the first 'k' positions
+	}{
+		{
+			name:           "Simple case with three elements",
+			input:          []int{1, 1, 2},
+			expectedLength: 2,
+			expectedSlice:  []int{1, 2},
+		},
+		{
+			name:           "Longer sequence with multiple duplicates",
+			input:          []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4},
+			expectedLength: 5,
+			expectedSlice:  []int{0, 1, 2, 3, 4},
+		},
 	}
-}
 
-func TestRemoveDuplicates2(t *testing.T) {
-	t.Parallel()
-	input := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
-	result := removeDuplicates(input)
+	for _, tc := range tests {
+		// t.Run allows us to identify which specific case failed
+		t.Run(tc.name, func(t *testing.T) {
+			// We work with a copy or the specific input for this case
+			gotLength := removeDuplicates(tc.input)
 
-	expected := 5
-	output := []int{0, 1, 2, 3, 4}
-	fmt.Printf("result: %d\n", result)
-	fmt.Printf("input: %v\n", input)
-	if result != expected {
-		t.Errorf("Expected %d, got %d", expected, result)
-		for i := 0; i < result; i++ {
-			if input[i] != output[i] {
-				t.Errorf("Output different, expected %v, real %v", output, input)
+			// 1. Check the returned length
+			if gotLength != tc.expectedLength {
+				t.Errorf("Length mismatch: got %d, want %d", gotLength, tc.expectedLength)
 			}
-		}
+
+			// 2. Check the modified slice prefix
+			// We only care about the elements up to gotLength
+			resultPrefix := tc.input[:gotLength]
+			if !reflect.DeepEqual(resultPrefix, tc.expectedSlice) {
+				t.Errorf("Slice mismatch: got %v, want %v", resultPrefix, tc.expectedSlice)
+			}
+		})
 	}
 }
 
