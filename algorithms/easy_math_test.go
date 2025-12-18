@@ -6,7 +6,7 @@ import (
 )
 
 func TestFizzBuzz(t *testing.T) {
-
+	t.Parallel()
 	input := 15
 	result := fizzBuzz(input)
 	expected := []string{

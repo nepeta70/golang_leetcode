@@ -8,6 +8,7 @@ import (
 
 func TestRemoveDuplicates(t *testing.T) {
 
+	t.Parallel()
 	input := []int{1, 1, 2}
 	fmt.Printf("Input: %v\n", input)
 	result := removeDuplicates(input)
@@ -27,7 +28,7 @@ func TestRemoveDuplicates(t *testing.T) {
 }
 
 func TestRemoveDuplicates2(t *testing.T) {
-
+	t.Parallel()
 	input := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
 	result := removeDuplicates(input)
 
@@ -46,7 +47,7 @@ func TestRemoveDuplicates2(t *testing.T) {
 }
 
 func TestMaxProfit(t *testing.T) {
-
+	t.Parallel()
 	input := []int{7, 1, 5, 3, 6, 4}
 	result := maxProfit(input)
 
@@ -56,7 +57,7 @@ func TestMaxProfit(t *testing.T) {
 }
 
 func TestRotate(t *testing.T) {
-
+	t.Parallel()
 	input := []int{1, 2, 3, 4, 5, 6, 7}
 	rotate(input, 3)
 
@@ -67,7 +68,7 @@ func TestRotate(t *testing.T) {
 }
 
 func TestContainsDuplicate(t *testing.T) {
-
+	t.Parallel()
 	input := []int{1, 2, 3, 1}
 	result := containsDuplicate(input)
 
@@ -77,7 +78,7 @@ func TestContainsDuplicate(t *testing.T) {
 }
 
 func TestSingleNumber(t *testing.T) {
-
+	t.Parallel()
 	input := []int{4, 1, 2, 1, 2}
 	result := singleNumber(input)
 
@@ -87,6 +88,7 @@ func TestSingleNumber(t *testing.T) {
 }
 
 func TestIntersect(t *testing.T) {
+	t.Parallel()
 	nums1 := []int{1, 2, 2, 1}
 	nums2 := []int{2, 2}
 	expected := []int{2, 2}
@@ -97,6 +99,7 @@ func TestIntersect(t *testing.T) {
 }
 
 func TestPlusOne(t *testing.T) {
+	t.Parallel()
 	input := []int{1, 2, 3}
 	result := plusOne(input)
 
@@ -107,6 +110,7 @@ func TestPlusOne(t *testing.T) {
 }
 
 func TestMoveZeroes(t *testing.T) {
+	t.Parallel()
 	input := []int{0, 1, 0, 3, 12}
 	expected := []int{1, 3, 12, 0, 0}
 	moveZeroes(input)
@@ -116,6 +120,7 @@ func TestMoveZeroes(t *testing.T) {
 }
 
 func TestTwoSum(t *testing.T) {
+	t.Parallel()
 	input := []int{2, 7, 11, 15}
 	target := 9
 	expected := []int{0, 1}
@@ -126,6 +131,7 @@ func TestTwoSum(t *testing.T) {
 }
 
 func TestIsValidSudoku(t *testing.T) {
+	t.Parallel()
 	board := [][]byte{
 		{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
 		{'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -144,6 +150,7 @@ func TestIsValidSudoku(t *testing.T) {
 }
 
 func TestRotateImage(t *testing.T) {
+	t.Parallel()
 	matrix := [][]int{
 		{1, 2, 3},
 		{4, 5, 6},

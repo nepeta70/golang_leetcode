@@ -6,7 +6,7 @@ import (
 )
 
 func TestTopKFrequent(t *testing.T) {
-
+	t.Parallel()
 	input := []int{1, 1, 1, 2, 2, 3}
 
 	expected := []int{1, 2}
@@ -19,7 +19,7 @@ func TestTopKFrequent(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
-
+	t.Parallel()
 	intervals := [][]int{
 		{1, 3},
 		{2, 6},
@@ -41,7 +41,7 @@ func TestMerge(t *testing.T) {
 }
 
 func TestMerge2(t *testing.T) {
-
+	t.Parallel()
 	intervals := [][]int{
 		{1, 4},
 		{2, 3},

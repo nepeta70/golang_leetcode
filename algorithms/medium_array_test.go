@@ -6,6 +6,7 @@ import (
 )
 
 func TestThreeSum(t *testing.T) {
+	t.Parallel()
 	nums := []int{-1, 0, 1, 2, -1, -4}
 	expected := [][]int{
 		{-1, -1, 2},
@@ -19,6 +20,7 @@ func TestThreeSum(t *testing.T) {
 }
 
 func TestSetZeroes(t *testing.T) {
+	t.Parallel()
 	matrix := [][]int{
 		{1, 1, 1},
 		{1, 0, 1},
@@ -38,6 +40,7 @@ func TestSetZeroes(t *testing.T) {
 }
 
 func TestGroupAnagrams(t *testing.T) {
+	t.Parallel()
 	strings := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	expected := [][]string{
 		{"bat"},
@@ -52,6 +55,7 @@ func TestGroupAnagrams(t *testing.T) {
 }
 
 func TestLengthOfLongestSubstring(t *testing.T) {
+	t.Parallel()
 	input := "abcabcbb"
 	expected := 3
 	result := lengthOfLongestSubstring(input)
@@ -62,6 +66,7 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 }
 
 func TestLengthOfLongestSubstring2(t *testing.T) {
+	t.Parallel()
 	input := "pwwkew"
 	expected := 3
 	result := lengthOfLongestSubstring(input)

@@ -6,7 +6,7 @@ import (
 )
 
 func TestDeleteNode(t *testing.T) {
-
+	t.Parallel()
 	head := &ListNode{Val: 4, Next: &ListNode{
 		Val: 5, Next: &ListNode{
 			Val: 1, Next: &ListNode{
@@ -28,7 +28,7 @@ func TestDeleteNode(t *testing.T) {
 }
 
 func TestRemoveNthFromEnd(t *testing.T) {
-
+	t.Parallel()
 	head := &ListNode{Val: 1, Next: &ListNode{
 		Val: 2, Next: &ListNode{
 			Val: 3, Next: &ListNode{
@@ -53,7 +53,7 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	}
 }
 func TestRemoveNthFromEnd2(t *testing.T) {
-
+	t.Parallel()
 	head := &ListNode{Val: 1, Next: nil}
 
 	result := removeNthFromEnd(head, 1)
@@ -64,7 +64,7 @@ func TestRemoveNthFromEnd2(t *testing.T) {
 }
 
 func TestRemoveNthFromEnd3(t *testing.T) {
-
+	t.Parallel()
 	head := &ListNode{Val: 1, Next: &ListNode{
 		Val: 2, Next: nil}}
 	expected := &ListNode{Val: 1, Next: nil}

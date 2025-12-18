@@ -3,7 +3,7 @@ package algorithms
 import "testing"
 
 func TestIsValidParentheses(t *testing.T) {
-
+	t.Parallel()
 	input := "()[]{}"
 	expected := true
 	result := isValidParentheses(input)
